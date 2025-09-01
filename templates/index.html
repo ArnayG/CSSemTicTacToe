@@ -10,7 +10,7 @@
 
 <body class="text-center">
 
-<h1>Tic-Tac-Toe</h1>
+<h1 class="text-4xl font-bold pb-5">Tic-Tac-Toe</h1>
 <!-- 
 <div class="grid grid-cols-3  w-99 outline-1 outline-black mx-auto text-blue-500 rounded-3xl">
   {% for i in range(3) %}
@@ -58,7 +58,15 @@
 
 </div>
 
-<a href="{{ url_for('reset') }}">Reset Game</a>
+<br class="h-20">
+
+<div class="flex items-center justify-center w-screen">
+  <a href="{{ url_for('reset') }}">
+    <div class="outline-gray-100 outline-1 font-bold hover:brightness-101 bg-linear-15 from-gray-200 from-10% via-gray-100 via-30% to-gray-50 to-90% w-md h-20 flex items-center justify-center rounded-3xl">
+      Reset Game
+    </div>
+  </a>
+</div>
 
 </body>
 
