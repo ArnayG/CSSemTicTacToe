@@ -11,22 +11,38 @@
 <body class="text-center">
 
 <h1>Tic-Tac-Toe</h1>
+<!-- 
+<div class="grid grid-cols-3  w-99 outline-1 outline-black mx-auto text-blue-500 rounded-3xl">
+  {% for i in range(3) %}
+    <div class="grid grid-rows-3 gap-3 m-5 outline-blue-500">
+      {% for j in range(3) %}
+      <div class="aspect-square text-center outline-2 outline-red-500 flex items-center">
+          {% if board[i][j] == " - " %}
+          <a href="{{ url_for('move', row=i, col=j) }}" class="w-full  text-center cursor-pointer">-</a>
+          {% else %}
+          {{ board[i][j] }}
+          {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div> -->
 
-<table class="outline-1 outline-black mx-auto text-blue-500 rounded-3xl">
-    {% for i in range(3) %}
-    <tr>
-        {% for j in range(3) %}
-        <td class="w-30 h-30 text-center outline-2 outline-pink-500">
-            {% if board[i][j] == " - " %}
-            <a href="{{ url_for('move', row=i, col=j) }}" class="cursor-pointer">&nbsp;-&nbsp;</a>
-            {% else %}
-            {{ board[i][j] }}
-            {% endif %}
-        </td>
-        {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+<div class="grid grid-cols-3 gap-2.5 w-99 bg-black  mx-auto text-red-500 text-3xl font-extrabold rounded-3xl">
+  {% for i in range(3) %}
+    <div class="grid grid-rows-3 gap-2.5  outline-blue-500">
+      {% for j in range(3) %}
+      <a href="{{ url_for('move', row=i, col=j) }}" class="bg-white aspect-square text-center flex items-center">
+          {% if board[i][j] == " - " %}
+          <p class="w-full text-center">-</p>
+          {% else %}
+          <p class="w-full text-center">{{ board[i][j] }}</p>
+          {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
 
 <div>
 
@@ -43,6 +59,7 @@
 </div>
 
 <a href="{{ url_for('reset') }}">Reset Game</a>
+
 </body>
 
 </html>

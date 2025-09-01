@@ -40,9 +40,10 @@ def home():
 
 @app.route('/reset')
 def reset():
-    global board, current_player
+    global board, current_player, game_won
     board = [[" - " for _ in range(3)] for _ in range(3)]
     current_player = "X"
+    game_won = ""
     return redirect(url_for("home"))
 
 @app.route('/move/<int:row>/<int:col>')
@@ -50,15 +51,17 @@ def move(row, col):
     global current_player
     global game_won
 
+    if board[row][col] == " - " and game_won == "":
+        place_move(current_player, row, col)
+        current_player = "O" if current_player == "X" else "X"
+    
     if check_win("X"):
         game_won="X"
     elif check_win("O"):
         game_won="O"
     elif check_draw():
         game_won="draw"
-    elif board[row][col] == " - ":
-        place_move(current_player, row, col)
-        current_player = "O" if current_player == "X" else "X"
+    
     return redirect(url_for("home"))#render_template("index.html", board=board)
 
 if __name__ == '__main__':
