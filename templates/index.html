@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    <title>Tic-Tac-Toe</title>
+    <link href="../static/output.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+<h1>Tic-Tac-Toe</h1>
+
+<table class="outline-1 outline-black mx-auto text-blue-500 rounded-3xl">
+    {% for i in range(3) %}
+    <tr>
+        {% for j in range(3) %}
+        <td class="w-30 h-30 text-center outline-2 outline-pink-500">
+            {% if board[i][j] == " - " %}
+            <a href="{{ url_for('move', row=i, col=j) }}" class="cursor-pointer">&nbsp;-&nbsp;</a>
+            {% else %}
+            {{ board[i][j] }}
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<div>
+
+  {% if game_won == "X" %}
+    <p>X won the game.</p>
+  {% endif %}
+  {% if game_won == "O" %}
+    <p>O won the game.</p>
+  {% endif %}
+  {% if game_won == "draw" %}
+    <p>The game is drawn.</p>
+  {% endif %}
+
+</div>
+
+<a href="{{ url_for('reset') }}">Reset Game</a>
+</body>
+
+</html>
