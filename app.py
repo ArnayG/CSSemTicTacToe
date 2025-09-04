@@ -33,6 +33,19 @@ def check_win(player):
 def check_draw():
     return all(cell != " - " for row in board for cell in row)
 
+def get_data():
+    rows = []
+    try:
+        with sqlite3.connect("Track.db") as conn:
+            conn.row_factory = sqlite3.Row
+            cur = conn.cursor()
+            cur.execute("SELECT school_name, school_type FROM school")
+            rows = cur.fetchall()
+    except sqlite3.Error as e:
+        print("Database error:", e)
+    return rows
+
+
 # --- Flask Routes ---
 @app.route('/')
 def home():

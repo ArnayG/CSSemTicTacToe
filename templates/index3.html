@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DB Example</title>
+    <link href="../static/output.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <h1 class="mb-4 ml-10">IHSAA School List</h1>
+      <table class="rounded-lg ml-10 table-auto border-separate border-spacing-2 border border-gray-400 dark:border-gray-500">
+        <thead class="">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data %}
+          <tr>
+            <td class="rounded-lg border border-gray-300 dark:border-gray-600 p-1">{{ row['school_name'] }}</td>
+            <td class="rounded-lg border border-gray-300 dark:border-gray-600 p-1">{{ row['school_type'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
