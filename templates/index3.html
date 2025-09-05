@@ -5,25 +5,36 @@
     <title>DB Example</title>
     <link href="../static/output.css" rel="stylesheet">
   </head>
-  <body class="bg-light">
-    <div class="container py-5">
-      <h1 class="mb-4 ml-10">IHSAA School List</h1>
-      <table class="rounded-lg ml-10 table-auto border-separate border-spacing-2 border border-gray-400 dark:border-gray-500">
-        <thead class="">
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in data %}
-          <tr>
-            <td class="rounded-lg border border-gray-300 dark:border-gray-600 p-1">{{ row['school_name'] }}</td>
-            <td class="rounded-lg border border-gray-300 dark:border-gray-600 p-1">{{ row['school_type'] }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+  <body class="bg-slate-900 text-slate-200">
+    <h1 class="mt-5 ml-10 heading text-4xl">IHSAA School List</h1>
+
+    <div class="w-5/6 flex justify-center row-auto">
+        <form method="get" class=" ml-10 mt-5 rounded-3xl bg-indigo-500 w-1/4 h-fit justify-center p-5">
+            <label for="school_type" class="w-1/2">Filter by Type:</label>
+            <select class="bg-slate-200 text-slate-950 p-2 w-1/2 rounded-xl" name="school_type" id="school_type" onchange="this.form.submit()">
+                <option value="">All</option>
+                <option value="Public" {% if request.args.get('school_type') == 'Public' %}selected{% endif %}>Public</option>
+                <option value="Private" {% if request.args.get('school_type') == 'Private' %}selected{% endif %}>Private</option>
+                <option value="Charter" {% if request.args.get('school_type') == 'Charter' %}selected{% endif %}>Charter</option>
+                <!-- Add more options as needed -->
+            </select>
+        </form>
+        <table class="w-3/4 shadow-2xl shadow-black/50 text-slate-950 bg-slate-800 text-center rounded-3xl ml-10 mt-5 mb-20 table-auto border-separate border-spacing-2 ">
+            <thead class="bg-slate-950">
+                <tr class="text-slate-200 text-2xl">
+                    <th class="p-5 rounded-tl-2xl">Name</th>
+                    <th class="p-5 rounded-tr-3xl">Type</th>
+                </tr>
+            </thead>
+            <tbody class="text-slate-100">
+                {% for row in data %}
+                <tr>
+                    <td class=" p-1">{{ row['school_name'] }}</td>
+                    <td class="p-1">{{ row['school_type'] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
   </body>
 </html>
